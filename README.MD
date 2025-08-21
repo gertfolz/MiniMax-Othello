@@ -111,4 +111,4 @@ You can add more test cases to this file to test your agent more thoroughly.
 * The server checks the legality of the moves before making them.
 * Illegal moves result in disqualification.
 * The 'random' player just draws a move from the valid ones in the received state.
-* In case of problems with the server, report via moodle or email.
+* In case of problems with the server, report via email.
