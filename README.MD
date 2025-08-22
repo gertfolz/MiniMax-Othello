@@ -1,24 +1,6 @@
 # Othello Kit
 A kit for running Othello matches and implementing the alpha-beta pruning algorithm.
 
-## Contents
-The kit contains the following files (all `__init__.py` are omitted):
-
-```text
-kit_othello
-|-- advsearch
-|   |-- othello
-|   |   \-- board.py
-|   |-- randomplayer
-|   |   \-- agent.py       <-- agent that plays randomly
-|   |-- timer.py           <-- auxiliary timing functions
-|   \-- your_agent         <-- rename this directory with your agent's name (you can add other files here if you need)
-|       \-- agent.py       <-- fill in make_move here
-|-- server.py
-\-- test_agent.py          <-- test the basic functioning of your agent (you can add other test cases)
-```
-
-
 ## Requirements
 The server was tested on a GNU/Linux machine with the python 3.7 interpreter.
 
@@ -99,6 +81,25 @@ y-axis
 
 IMPORTANT: be careful with the coordinate system vs. matrix indexing. Your make_move function must return the x, y coordinates (column, row) while the matrix representation addresses the row first and then the column.
 
+## Agent Strategy
+
+This project includes an agent named `agente_tangente` that uses the minimax algorithm with alpha-beta pruning.
+
+### Evaluation Function
+The evaluation function is based on common Othello strategies. In the early game, it prioritizes moves with few captures near the center of the board. This maximizes the number of possible moves for the agent while minimizing the opponent's options. The goal is to force the opponent into capturing undesirable squares (known as C-squares and X-squares, which are adjacent to the corners), preventing them from capturing a corner.
+
+As the game progresses and the center of the board fills up, the function's priority shifts to capturing corners and edges near already-captured corners.
+
+### Stopping Strategy
+The minimax algorithm uses a fixed search depth of 2. While not the most optimal solution, this depth was sufficient to achieve a 100% win rate against the random player.
+
+### Development Notes
+Several attempts were made to implement a more "intelligent" stopping strategy, such as:
+*   Making the search depth dependent on the number of possible moves from a node.
+*   Expanding only promising nodes and ignoring those with a lower score.
+
+In all tested cases, these more intelligent solutions were either slower than the fixed depth of 2 or resulted in victories that were much closer to a draw. Therefore, the simpler solution was kept.
+
 ## Testing
 To test the basic functionality of your agent, you can run the `test_agent.py` script. Make sure you have a `your_agent` directory with an `agent.py` file inside.
 
@@ -112,3 +113,6 @@ You can add more test cases to this file to test your agent more thoroughly.
 * Illegal moves result in disqualification.
 * The 'random' player just draws a move from the valid ones in the received state.
 * In case of problems with the server, report via email.
+
+## TODO
+- [ ] Add a Django interface to the board.
