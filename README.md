@@ -1,4 +1,4 @@
-# Othello Kit
+# MiniMax Othello
 A kit for running Othello matches and implementing the alpha-beta pruning algorithm.
 
 ## Requirements
@@ -115,4 +115,4 @@ You can add more test cases to this file to test your agent more thoroughly.
 * In case of problems with the server, report via email.
 
 ## TODO
-- [ ] Add a Django interface to the board.
+- [ ] Add an interface to the board.
